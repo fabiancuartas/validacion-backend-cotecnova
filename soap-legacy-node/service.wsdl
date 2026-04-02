@@ -1,0 +1,40 @@
+<definitions name="InscripcionService"
+             targetNamespace="http://localhost:8000/wsdl"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://localhost:8000/wsdl"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <message name="inscribirUsuarioRequest">
+        <part name="nombre" type="xsd:string"/>
+        <part name="email" type="xsd:string"/>
+        <part name="codigoCurso" type="xsd:string"/>
+    </message>
+
+    <message name="inscribirUsuarioResponse">
+        <part name="resultado" type="xsd:string"/>
+        <part name="estado" type="xsd:int"/>
+    </message>
+
+    <portType name="InscripcionPortType">
+        <operation name="inscribirUsuario">
+            <input message="tns:inscribirUsuarioRequest"/>
+            <output message="tns:inscribirUsuarioResponse"/>
+        </operation>
+    </portType>
+
+    <binding name="InscripcionBinding" type="tns:InscripcionPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="inscribirUsuario">
+            <soap:operation soapAction="inscribirUsuario"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+
+    <service name="InscripcionService">
+        <port name="InscripcionPort" binding="tns:InscripcionBinding">
+            <soap:address location="http://localhost:8000/wsdl"/>
+        </port>
+    </service>
+</definitions>
