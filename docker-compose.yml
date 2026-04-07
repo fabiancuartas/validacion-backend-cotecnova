@@ -1,0 +1,17 @@
+services:
+  soap-service:
+    build: ./soap-legacy-node
+    ports:
+      - "8000:8000"
+    container_name: cotecnova-soap
+
+  rest-api:
+    build: ./rest-api-python
+    # Lo exponemos en el puerto 8001 para que no choque con Node
+    ports:
+      - "8001:8000"
+    environment:
+      - SOAP_WSDL_URL=http://soap-service:8000/wsdl?wsdl
+    depends_on:
+      - soap-service
+    container_name: cotecnova-rest

@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import jwt
 import datetime
 import zeep
+import os
 
 app = FastAPI(title="API REST Cotecnova - Inscripciones")
 
@@ -45,7 +46,7 @@ def login():
 @app.post("/api/inscripciones", dependencies=[Depends(verificar_token)], summary="Inscripción consumiendo SOAP")
 def inscribir_usuario(datos: InscripcionData):
     # La URL donde vive nuestro dinosaurio en Node.js
-    wsdl_url = "http://localhost:8000/wsdl?wsdl"
+    wsdl_url = os.getenv("SOAP_WSDL_URL", "http://localhost:8000/wsdl?wsdl")
     
     try:
         # 1. Zeep lee el XML (WSDL) y entiende cómo hablar con el SOAP 
