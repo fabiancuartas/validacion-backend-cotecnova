@@ -69,8 +69,8 @@ def inscribir_usuario(datos: InscripcionData):
         }
         
     except zeep.exceptions.Fault as error_soap:
-        # Error 400 si el SOAP nos rechaza (ej. faltan datos) 
-        raise HTTPException(status_code=400, detail=f"Error validación SOAP: {str(error_soap)}")
+        # Error 400 si el SOAP nos rechaza (Usamos error_soap.message para capturar el texto)
+        raise HTTPException(status_code=400, detail=f"Error validación SOAP: {error_soap.message}")
     except Exception as e:
         # Error 500 si el servidor Node está apagado o hay un fallo grave 
         raise HTTPException(status_code=500, detail=f"El servicio Legacy no está disponible: {str(e)}")

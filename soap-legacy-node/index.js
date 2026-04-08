@@ -21,8 +21,8 @@ const myService = {
                 if (!nombre || !email || !codigoCurso) {
                     throw {
                         Fault: {
-                            Code: { Value: 'soap:Client' },
-                            Reason: { Text: 'Faltan datos obligatorios para la inscripción' }
+                            faultcode: 'soap:Client',
+                            faultstring: 'Faltan datos obligatorios para la inscripción'
                         }
                     };
                 }
