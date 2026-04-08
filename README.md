@@ -48,4 +48,4 @@ Para simular un rechazo desde el servidor Legacy, envíe el JSON con el campo no
 2. Detenga el contenedor del servicio SOAP ejecutando: `docker stop cotecnova-soap`
 3. Vuelva a Swagger e intente enviar una petición de inscripción válida.
 * Resultado esperado: La API de Python fallará al intentar comunicarse con el WSDL y devolverá un `500 Internal Server Error` indicando que el servicio Legacy no está disponible.
-* (Nota: Para restaurar el servicio, ejecute docker start cotecnova-soap).
+* _(Nota: Para restaurar el servicio, ejecute `docker start cotecnova-soap`)._
