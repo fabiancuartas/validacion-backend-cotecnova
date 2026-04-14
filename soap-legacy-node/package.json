@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^5.2.1",
+    "mongoose": "^9.4.1",
     "soap": "^1.8.0"
   }
 }
